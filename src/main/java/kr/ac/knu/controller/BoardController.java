@@ -8,6 +8,7 @@ import kr.ac.knu.dto.BoardDTO;
 import kr.ac.knu.exception.BadRequestException;
 import kr.ac.knu.repository.BoardRepository;
 import kr.ac.knu.service.BoardService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -31,6 +32,7 @@ import springfox.documentation.annotations.ApiIgnore;
  */
 @RestController
 @RequestMapping("/board-service")
+@Slf4j
 public class BoardController {
 
     @Autowired

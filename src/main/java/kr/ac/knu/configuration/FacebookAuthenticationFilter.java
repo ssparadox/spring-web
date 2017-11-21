@@ -40,21 +40,10 @@ public class FacebookAuthenticationFilter extends AbstractAuthenticationProcessi
 
         KnuUser knuUser = userOperator.getKnuUserFromAccessToken(accessToken);
         if (knuUser == null) {
+            httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED);
             return null;
         }
 
         return new KnuAuthentication(knuUser, null);
-
-//        try {
-//            FacebookUser facebookUser = facebookClient.callFacebookProfile(accessToken);
-//            if (facebookUser != null) {
-//                KnuUser knuUser = userService.findAndCreateKnuUser(facebookUser);
-//
-//            }
-//        } catch (Exception e) {
-//            log.error("Facebook Login fail [{}] : {}", accessToken, e.toString());
-//        }
-
-//        return null;
     }
 }

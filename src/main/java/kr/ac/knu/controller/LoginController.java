@@ -25,7 +25,6 @@ public class LoginController {
 
     @PostMapping("/logon")
     public KnuUser logon(@ApiIgnore @AuthenticationPrincipal KnuUser knuUser) {
-
         return knuUser;
     }
 }

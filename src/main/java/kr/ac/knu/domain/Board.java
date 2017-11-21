@@ -47,6 +47,6 @@ public class Board {
 
     @Override
     public String toString() {
-        return String.format("Board : %s", this.idx);
+        return String.format("[Board] IDX : %s, Title : %s, contents : %s, user : %s", idx, title, contents, knuUser.getName());
     }
 }
