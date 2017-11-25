@@ -39,7 +39,6 @@ public class BoardController {
     private BoardRepository boardRepository;
     @Autowired
     private BoardService boardService;
-
     @ApiImplicitParams({
             @ApiImplicitParam(name = "page", value = "Page Number", required = false, dataType = "integer", paramType = "query", defaultValue = "1"),
             @ApiImplicitParam(name = "size", value = "Page Size", required = false, dataType = "integer", paramType = "query", defaultValue = "10")
@@ -62,13 +61,16 @@ public class BoardController {
     @PostMapping(value = "/v1/boards")
     @ResponseStatus(HttpStatus.CREATED)
     public void createBoard(@RequestBody BoardDTO boardDTO, @ApiIgnore @AuthenticationPrincipal KnuUser knuUser) {
-        boardService.insertBoard(knuUser, boardDTO);
+        Board board =  boardService.insertBoard(knuUser, boardDTO);
+        log.info("{}", board);
+
     }
 
     @PutMapping(value = "/v1/boards/{idx}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateBoard(@PathVariable int idx, @RequestBody BoardDTO boardDTO, @ApiIgnore @AuthenticationPrincipal KnuUser knuUser) {
-        boardService.updateBoard(knuUser, idx, boardDTO);
+        Board board =  boardService.updateBoard(knuUser, idx, boardDTO);
+        log.info("{}", board);
     }
 
     @DeleteMapping(value = "/v1/boards/{idx}")

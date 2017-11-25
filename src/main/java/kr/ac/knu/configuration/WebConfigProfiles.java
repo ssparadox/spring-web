@@ -50,6 +50,7 @@ public class WebConfigProfiles {
         return new UserOperator() {
             @Override
             public KnuUser getKnuUserFromAccessToken(String accessToken) {
+                log.info("Authenticating login token:  {}", accessToken);
                 log.info("DEV!! : {}", accessToken);
                 FacebookUser facebookUser = createFacebookUser(accessToken);
                 if (facebookUser == null) {
@@ -67,6 +68,7 @@ public class WebConfigProfiles {
             facebookUser = facebookClient.callFacebookProfile(accessToken);
         } catch (Exception e) {
             log.error("Facebook Login fail [{}] : {}", accessToken, e.toString());
+            log.info("Authentication fail: token is invalid: [{}]", accessToken);
         }
         return facebookUser;
     }
